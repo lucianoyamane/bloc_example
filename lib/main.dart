@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<BlocCounter>(
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: MyHomePage(
+        home: const MyHomePage(
           title: "Bloc Demo Home Page",
         ),
       ),
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   final String title;
-  MyHomePage({required this.title});
+  const MyHomePage({Key? key, required this.title}): super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -61,18 +63,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 FloatingActionButton(
                   onPressed: () {
                     BlocProvider.of<BlocCounter>(context)
-                        .add(CounterEvent.decrement);
+                        .add(Decrement());
                   },
                   tooltip: 'Decrement',
-                  child: Icon(Icons.remove),
+                  child: const Icon(Icons.remove),
                 ),
                 FloatingActionButton(
                   onPressed: () {
                     BlocProvider.of<BlocCounter>(context)
-                        .add(CounterEvent.increment);
+                        .add(Increment());
                   },
                   tooltip: 'Increment',
-                  child: Icon(Icons.add),
+                  child: const Icon(Icons.add),
                 )
               ],
             )
